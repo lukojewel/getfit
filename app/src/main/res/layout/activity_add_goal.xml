@@ -37,47 +37,34 @@
                 android:padding="12dp"
                 android:layout_height="50dp" />
         </android.support.design.widget.TextInputLayout>
-        <Button
-            android:text="Duration"
-            android:id="@+id/goal_time"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:layout_width="match_parent"
-            android:padding="12dp"
-            android:layout_height="50dp" />
-        <Button
-            android:id="@+id/goal_amount"
-            android:text="Amount"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:layout_width="match_parent"
-            android:padding="12dp"
-            android:layout_height="50dp" />
-
-
-            <ListView
-                android:paddingTop="10dp"
-                android:id="@+id/goal_listview"
-                android:paddingBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
 
     <Button
-        android:id="@+id/goal_add_contact"
+        android:id="@+id/goal_time"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="12dp"
+        android:text="Due Date"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/goal_amount"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:padding="12dp"
-        android:layout_height="50dp" />
+        android:text="Calories"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
+
+
     <Button
         android:id="@+id/goal_submit"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
         android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="150dp"
-        android:layout_height="50dp" />
+        android:text="CREATE"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
 
     </LinearLayout>

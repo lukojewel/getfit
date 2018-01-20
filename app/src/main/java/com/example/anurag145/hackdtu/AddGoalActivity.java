@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,13 +48,13 @@ public class AddGoalActivity extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_add_goal);;
         bt_amt=(Button)findViewById(R.id.goal_amount);
         bt_done=(Button)findViewById(R.id.goal_submit);
-        bt_addcontact=(Button)findViewById(R.id.goal_add_contact);
+//        bt_addcontact=(Button)findViewById(R.id.goal_add_contact);
         bt_duration=(Button)findViewById(R.id.goal_time);
 
         tv_name=(EditText) findViewById(R.id.goal_name_textview);
         tv_about=(EditText)findViewById(R.id.goal_about_textview);
 
-        listView=(ListView) findViewById(R.id.goal_listview);
+//        listView=(ListView) findViewById(R.id.goal_listview);
         bt_amt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,14 +83,14 @@ public class AddGoalActivity extends AppCompatActivity implements DatePickerDial
             }
         });
 
-        bt_addcontact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
-                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
-                startActivityForResult(contactPickerIntent, 100);
-            }
-        });
+//        bt_addcontact.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
+//                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+//                startActivityForResult(contactPickerIntent, 100);
+//            }
+//        });
         bt_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +98,7 @@ public class AddGoalActivity extends AppCompatActivity implements DatePickerDial
                 for(int i=0;i<mName.size();i++){
                     contacts_list+=mName.get(i)+" , ";
                 }
-                amount="Rs "+amount;
+                amount=amount + " Calories";
                 String name=getSharedPreferences("datadata", MODE_PRIVATE).getString("name","1");
                 String timest=String.valueOf(System.currentTimeMillis());
                 String psh=tv_name.getText().toString()+name+timest;
@@ -119,7 +120,7 @@ public class AddGoalActivity extends AppCompatActivity implements DatePickerDial
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-                    contactPicked(data);
+            contactPicked(data);
         }
     }
 
@@ -133,17 +134,22 @@ public class AddGoalActivity extends AppCompatActivity implements DatePickerDial
             cursor = getContentResolver().query(uri, null, null, null, null);
             cursor.moveToFirst();
 
-            int  imgIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI);
+            int  imgIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Photo.PHOTO);
             int  phoneIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
             int  nameIndex =cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
             phoneNo = cursor.getString(phoneIndex);
             name = cursor.getString(nameIndex);
             imgUri=cursor.getString(imgIndex);
-            mName.add(name);
+            if(name==null||name.length()<2){
+                mName.add("User");
+            }else{
+                mName.add(name);
+            }
+
             mContact.add(phoneNo);
             mImage.add(imgUri);
             CustomList customList = new CustomList(this,mName,mContact,mImage);
-            listView.setAdapter(customList);
+//            listView.setAdapter(customList);
 
         } catch (Exception e) {
             e.printStackTrace();

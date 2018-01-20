@@ -28,6 +28,7 @@ public class Bot_VH extends RecyclerView.ViewHolder {
     public TextView contactName;
     public TextView vote;
     public TextView price;
+//    public TextView desc;
     public TextView date;
     public Button action;
 
@@ -35,9 +36,10 @@ public class Bot_VH extends RecyclerView.ViewHolder {
         super(itemView);
         root=(CardView)itemView.findViewById(R.id.baap);
         goalName=(TextView)itemView.findViewById(R.id.goal_name);
-        contactName=(TextView)itemView.findViewById(R.id.contact_name);
+//        contactName=(TextView)itemView.findViewById(R.id.contact_name);
         vote=(TextView)itemView.findViewById(R.id.vote);
         price=(TextView)itemView.findViewById(R.id.price);
+//        desc=(TextView)itemView.findViewById(R.id.desc);
         date=(TextView) itemView.findViewById(R.id.date);
         action=(Button) itemView.findViewById(R.id.action);
     }
@@ -53,13 +55,8 @@ public class Bot_VH extends RecyclerView.ViewHolder {
 
     public void setItems(final DmGoal model,final String name, final Context context){
         goalName.setText(model.goalName);
-        contactName.setText(model.name);
-        if(convertToInt(model.voteNeg)+convertToInt(model.votePos)>0){
-            vote.setText((String.format("%.2f",convertToFloat(model.votePos)/(convertToFloat(model.votePos)+convertToFloat(model.voteNeg))*100.00))+"%");
-        }
-        else{
-            vote.setText("0%");
-        }
+//        contactName.setText(model.name);
+        vote.setText(model.desc);
         price.setText(model.amount);
         date.setText(model.duration);
         String str_date=model.duration;
@@ -71,14 +68,8 @@ public class Bot_VH extends RecyclerView.ViewHolder {
         } catch (ParseException e) {
         }
         long timestamp=date.getTime();
-        boolean is_expired=(timestamp<=System.currentTimeMillis()) || (model.status.equals("done"));
-        if(name.equals(model.name) && is_expired){
-            vote.setVisibility(View.VISIBLE);
-        }
-        else{
-            vote.setVisibility(View.GONE);
-        }
-
+        boolean is_expired=!(timestamp<=System.currentTimeMillis());
+        vote.setVisibility(View.VISIBLE);
         if(is_expired && (convertToInt(model.votePos)+convertToInt(model.voteNeg)==convertToInt(model.people_count))){
             float perct=convertToFloat(model.votePos)/(convertToFloat(model.votePos)+convertToFloat(model.voteNeg))*100.00f;
             if(perct>=50.0){
@@ -87,7 +78,7 @@ public class Bot_VH extends RecyclerView.ViewHolder {
             }
             else{
                 root.setAlpha(1.0f);
-                price.setTextColor(context.getResources().getColor(android.R.color.holo_red_light));
+                price.setTextColor(context.getResources().getColor(android.R.color.holo_green_light));
             }
 
         }

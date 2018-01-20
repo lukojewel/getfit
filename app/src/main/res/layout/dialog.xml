@@ -12,18 +12,18 @@
         android:id="@+id/goal_name_textview_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/texter"
-        android:textAlignment="center"
-        android:inputType="number"
-        android:layout_margin="16dp"
-        android:hint="Enter Amount"
-        android:paddingLeft="15dp"
-        android:textSize="20sp"
-        android:paddingTop="15dp"
-        />
+
+        <EditText
+            android:id="@+id/texter"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="16dp"
+            android:hint="Enter Calories"
+            android:inputType="number"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

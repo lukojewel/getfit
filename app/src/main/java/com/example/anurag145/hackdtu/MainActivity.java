@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return "Goals";
+                    return "Create Goal";
                 case 1:
-                    return "Activity";
+                    return "All Goals";
                 case 2:
                     return "Profile";
             }

@@ -40,6 +40,7 @@ public class ContactFragments extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view= inflater.inflate(R.layout.fragment_contact_fragments, container, false);
         profilePic=(ImageView) view.findViewById(R.id.prof_icon);
         name=(TextView) view.findViewById(R.id.person_name);
